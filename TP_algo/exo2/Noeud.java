@@ -1,4 +1,4 @@
-class Noeud implements Cloneable {
+class Noeud {
 	private char elt;
 	private Noeud left, right;
 	
