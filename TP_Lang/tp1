@@ -1,0 +1,7 @@
+egrep -Eon \'regard[a-z]+\b' germinal.txt | wc -w
+grep -Eon '\b[A-Z]{1}[a-z]*' germinal.txt 
+grep -Eon '[a-zA-Z]+tt[a-zA-Z]*' germinal.txt | wc -w 
+grep -Eon '[a-zA-Z]{10,20}' germinal.txt | wc -w 
+grep -Eon '.{21}est.{21}' germinal.txt | wc -l 
+grep -Eon '[0-9]*[13579]{1}' germinal.txt | wc -w
+grep -Eon '\b[0-9]*[13579]{1}\b' germinal.txt
