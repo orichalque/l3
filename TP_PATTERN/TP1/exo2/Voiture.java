@@ -24,6 +24,6 @@ public class Voiture implements Vehicule {
 	}
 	
 	public String composition {
-		System.out.println("C'est une voiture ... ? ");
+		return(moteur+" "+roues);
 	}
 }
