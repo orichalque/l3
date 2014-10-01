@@ -6,6 +6,6 @@ public class Cryptor {
 	}
 	
 	public String crypt(String s) {
-		return hash(s);
+		return hash.crypt(s);
 	}
 }
