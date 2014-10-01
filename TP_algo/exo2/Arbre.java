@@ -14,15 +14,11 @@ public class Arbre {
 	/* ############### Methods ############### */
 	
 	public boolean empty() {
-		if(rac == null) {
-			return true;
-		} else {
-			return false;
-		}
+		return (rac.empty());
 	}
 	
 	public void display(Noeud n) {
-		if (!n.empty()) {
+		if (n != null && !n.empty()) {
 			if (n.haveLeft()) {
 				System.out.print('(');
 				display(n.getLeft());
@@ -32,6 +28,19 @@ public class Arbre {
 			} else {
 				System.out.print(n.getElt());
 			}
+		}
+	}
+	
+	public int height(Noeud n) {
+		if (!n.haveLeft() && !n.haveRight()){ //leaf -> return 0
+			return 0;
+		}
+		if (n.haveRight() && n.haveLeft()) { //Have 2 son -> return the highest height between 'em
+			return (1+Math.max(height(n.getRight()), height(n.getLeft())));
+		} else if (n.haveLeft()) { //Have only 1 left son 
+			return (1+height(n.getLeft())); 
+		} else {
+			return(1+height(n.getRight()));
 		}
 	}
 }
