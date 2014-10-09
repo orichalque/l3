@@ -1,5 +1,3 @@
-package Ex2_AB;
-
 public class ArbreBinaire<E> {
 	private NoeudBinaire<E> racine;
 	private int sz;

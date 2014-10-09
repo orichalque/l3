@@ -1,5 +1,3 @@
-package Ex2_AB;
-
 import java.util.*;
 
 public class NoeudBinaire<E extends Comparable<E>>{
@@ -121,7 +119,6 @@ public class NoeudBinaire<E extends Comparable<E>>{
 				{
 					return false;
 				}
-				
 			}
 		}
 	}
