@@ -48,6 +48,7 @@ public class Noeud<E extends Comparable<E>> {
 		}
 	}
 	
+
 	public void ROTG() {
 		Noeud k = riSon; //b <- fils droit
 		int a = balance(); 
@@ -56,6 +57,18 @@ public class Noeud<E extends Comparable<E>> {
 		k.leSon = this; /*Rotation*/
 		k.bal
 	}
+
+	public int height(){
+		if(isLeaf()){
+			return 0;
+		} else {
+			return (1 + max(height(riSon, leSon)));
+	}
+	public int balance(){
+		return riSon.height() - leSon.height();
+	}
+	
+
 	
 	
 	
