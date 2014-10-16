@@ -90,7 +90,7 @@ public class Noeud<E extends Comparable<E>> {
 	}
 	
 
-			return (1 + Math.max(height(riSon, leSon)));
+		return (1 + Math.max(height(riSon, leSon)));
 	}
 	public int balance(){
 		return riSon.height() - leSon.height();
@@ -99,7 +99,7 @@ public class Noeud<E extends Comparable<E>> {
 		return bal;
 	}
 	
-	public Noeaud<E> ROTD() {
+		public Noeud<E> ROTD() {
 		Noeud<E> k = leSon; 
 		int a = bal; 
 		int b = k.getBalance();
@@ -108,5 +108,7 @@ public class Noeud<E extends Comparable<E>> {
 		setBal(a-Math.max(b,0)-1);
 		k.setBal(Math.min(a-2,a+b-2,b-1);
 		return k;
-	}	
+	}
+	
+		
 }
