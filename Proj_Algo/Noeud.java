@@ -82,16 +82,10 @@ public class Noeud<E extends Comparable<E>> {
 		if(isLeaf()){
 			return 0;
 		} else {
-			return (1 + max(height(riSon, leSon)));
-	}
-	
-	public int balance(){
-		return riSon.height() - leSon.height();
-	}
-	
-
 			return (1 + Math.max(height(riSon, leSon)));
+		}
 	}
+//	ifgqgimdsgqùgqds
 	public int balance(){
 		return riSon.height() - leSon.height();
 	}
