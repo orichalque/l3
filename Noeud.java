@@ -68,11 +68,14 @@ public class Noeud<E extends Comparable<E>> {
 	public int balance(){
 		return riSon.height() - leSon.height();
 	}
+	public int getBalance(){
+		return bal;
+	}
 	
 	public Noeaud<E> ROTD() {
 		Noeud<E> k = leSon; 
 		int a = bal; 
-		int b = k.balance();
+		int b = k.getBalance();
 		leSon = k.getRiSon();
 		k.riSon = this; /*Rotation*/
 		setBal(a-Math.max(b,0)-1);
