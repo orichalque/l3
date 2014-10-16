@@ -13,6 +13,7 @@ public class Noeud<E extends Comparable<E>> {
 		nbFils=0;
 		leSon = null;
 		riSon = null;
+		bal = 0;
 	}
 	
 	public Noeud<E> getRiSon() {
@@ -62,13 +63,22 @@ public class Noeud<E extends Comparable<E>> {
 		if(isLeaf()){
 			return 0;
 		} else {
-			return (1 + max(height(riSon, leSon)));
+			return (1 + Math.max(height(riSon, leSon)));
 	}
 	public int balance(){
 		return riSon.height() - leSon.height();
 	}
 	
-
+	public Noeaud<E> ROTD() {
+		Noeud<E> k = leSon; 
+		int a = bal; 
+		int b = k.balance();
+		leSon = k.getRiSon();
+		k.riSon = this; /*Rotation*/
+		setBal(a-Math.max(b,0)-1);
+		k.setBal(Math.min(a-2,a+b-2,b-1);
+		return k;
+	}	
 	
 	
 	
