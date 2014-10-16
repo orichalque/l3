@@ -4,9 +4,10 @@ public class Noeud<E extends Comparable<E>> {
 	protected Noeud<E> leSon;
 	protected Noeud<E> riSon;
 	protected int nbFils;
+	protected int bal;
 	
 	//CONSTRUCTEUR
-	public NoeudBinaire(E base)
+	public Noeud(E base)
 	{
 		etq = base;
 		nbFils=0;
@@ -37,6 +38,18 @@ public class Noeud<E extends Comparable<E>> {
 			//ajout recursif a faire
 		}
 	}
+	
+	public int height(){
+		if(isLeaf()){
+			return 0;
+		} else {
+			return (1 + max(height(riSon, leSon)));
+	}
+	public int balance(){
+		return riSon.height() - leSon.height();
+	}
+	
+	
 	
 	
 	
