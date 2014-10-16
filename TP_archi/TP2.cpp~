@@ -1,0 +1,25 @@
+#include<iostream>
+#include<string>
+
+using  namespace std;
+
+string add_bin(string nb1, string nb2) {
+	if ((nb1=="1" && nb2=="1") || (nb1 == "0" && nb2 == "0")) {
+		return "0";
+	} else {
+		return "1";
+	}
+}
+
+string bin2brgc(string binary) {
+	string gray = binary.at(0);
+	for (int i = 0; i < binary.length(); i++) {
+		gray = gray + add_bin(binary.at(i), binary.at(i+1));
+	}
+	cout << gray << endl;
+}
+int main() {
+	bin2brgc(10010);
+	return 0;
+	
+}
