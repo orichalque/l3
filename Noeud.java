@@ -84,7 +84,9 @@ public class Noeud<E extends Comparable<E>> {
 	}
 	
 	public 	Noeud<E> DROTD(){
-		
+		leSon = leSon.ROTD(); // ou juste leSon.ROTD(); ???
+		return
+		}
 	}
 	
 	

@@ -82,7 +82,6 @@ public class Noeud<E extends Comparable<E>> {
 		if(isLeaf()){
 			return 0;
 		} else {
-<<<<<<< HEAD
 			return (1 + max(height(riSon, leSon)));
 	}
 	
@@ -91,13 +90,8 @@ public class Noeud<E extends Comparable<E>> {
 	}
 	
 
-		return (1 + Math.max(height(riSon, leSon)));
-=======
 			return (1 + Math.max(height(riSon, leSon)));
-		}
->>>>>>> 9cce1087045c2e4c9e32138807fde220606065ec
 	}
-	
 	public int balance(){
 		return riSon.height() - leSon.height();
 	}
@@ -105,11 +99,7 @@ public class Noeud<E extends Comparable<E>> {
 		return bal;
 	}
 	
-<<<<<<< HEAD
 		public Noeud<E> ROTD() {
-=======
-	public Noeud<E> ROTD() {
->>>>>>> 3cb369119e292b562df691b7b6ce145cf91f83f4
 		Noeud<E> k = leSon; 
 		int a = bal; 
 		int b = k.getBalance();
