@@ -145,7 +145,7 @@ public class Noeud<E extends Comparable<E>> {
 		}
 	}
 	
-	public void supp(E x, int variationH){
+	public int supp(E x, int variationH){  // A MODIFIER COMME ADD
 		if(x>etq){
 			riSon.supp(x, variationH);
 		}else if(x<etq){
@@ -167,7 +167,7 @@ public class Noeud<E extends Comparable<E>> {
 		}
 	}
 	
-	public void oterMin(){
+	public int oterMin(){ //A FAIRE COMME ADD
 	}
 		
 }
