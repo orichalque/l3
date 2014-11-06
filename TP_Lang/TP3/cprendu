@@ -1,0 +1,49 @@
+1- /
+2- {[ab]}
+3- grammaire contextuelle de type 0
+	C'est un type un, sauf qu'à un endroit, |a| > |b| pour une règle de la forme a -> b
+4- c'est bien
+5- C'est affichée comme des ramifications à partir de l'axiome S
+
+Exercice 2
+
+1- Type 0 encore
+2- Ouais aabbcc en fait partie
+3- 51 Noeuds générés
+
+Exercice 3
+
+{a^n.b^n, n > 0}
+S -> X
+X -> ab
+X -> aXb
+
+aaabbb ok
+5 noeuds
+
+aabb -> Accept
+ab -> accept
+aab -> accept
+ba -> accept
+
+Algorithme d'analyse ?
+-> CYK fonctionne, même si le langage n'est pas en FNchomsky
+
+Exercice 4
+
+1) a*b+
+2)
+
+S	A
+A	aA
+A	a
+B	bB
+B	b
+A	bB
+
+JFLAP est d'accord avec moi
+
+bbb et aabbb font bien partie de ce langage
+
+mais pas aaa
+
