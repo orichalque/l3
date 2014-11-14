@@ -56,7 +56,7 @@ public class Noeud<E extends Comparable<E>> {
 		}else{
 			if(x!=etq){
 				if ( x > etq ){
-					h = riSon.addSon(x);
+					h =  riSon.addSon(x);
 				}else{
 					h = leSon.addSon(x);
 					h = -h;
@@ -145,29 +145,73 @@ public class Noeud<E extends Comparable<E>> {
 		}
 	}
 	
-	public int supp(E x, int variationH){  // A MODIFIER COMME ADD
-		if(x>etq){
-			riSon.supp(x, variationH);
-		}else if(x<etq){
-			leSon.supp(x, -variationH);
-		}else if(leSon == null)
-			//variation = -1
-		}else if(rison == null){
-			// variation = -1
+	public int supp(E x){  // A MODIFIER COMME ADD
+		if(this != null){
+			int h;
+			if(x>etq){
+				h = riSon.supp(x);
+			}else if(x<etq){
+				h = leSon.supp(x);
+				h = -h;
+			}else if(leSon == null){
+				//variation = -1
+				return -1;
+			}else if(rison == null){
+				// variation = -1
+				return -1;
+			}else{
+				etq = mini(rison);
+				h = riSon.oterMin(); // vrairation H prend variation de otermin
+			}
+			if(h != 0){
+				bal = bal + h;
+				equilibrer();
+				if(bal == 0){
+					//variationH = -1
+					return -1;
+				}else{
+					return 0;
+			}else{
+				return 0;
+			}
+			
 		}else{
-			etq = mini(rison);
-			riSon.oterMin(); // vrairation H prend variation de otermin
-		}
+			return 0;
 		
-		if(variationH != 0){
-			bal = bal + variationH;
-			equilibrer();
-			if(bal == 0){
-				//variationH = -1
-		}
 	}
 	
 	public int oterMin(){ //A FAIRE COMME ADD
+		int mini;
+		int h;
+		if(leSon == null){
+			mini = etq;
+			this = riSon
+			return -1;
+		}else{
+			h = leSon.oterMin();
+			h = -h;
+		}
+		if(h==0){
+			return 0;
+		}else{
+			bal = bal+h;
+			equilibrer();
+			if(bal==0){
+				return -1;
+			}else{
+				return 0;
+		}
+	}
+	public E mini(){
+		if(this == null){
+			return null;
+		}else{
+			if(leSon == null){
+				return etq;
+			}else{
+				return leSon.mini()
+			}
+		}
 	}
 		
 }
