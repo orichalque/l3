@@ -1,0 +1,61 @@
+
+// ********* PROLOGUE C++ ***********
+
+%{
+	#define YYSTYPE int
+	#include <iostream>
+	int yylex (void);
+	void yyerror (char const *);
+	int i(0);
+	int j(0);
+%}
+
+//****** GRAND MERE ******
+
+%%
+input: 	//	
+		| input ligne
+;
+
+ligne:	'\n'
+		| S '\n'{ std::cout << $1 << std::endl;}
+;
+
+S:	    somme
+;
+somme:	somme '+' produit {$2 = $2 + $3;} | produit
+;
+produit: produit '*' facteur {$3 = $3 * $4;}| facteur
+;
+facteur:	'('somme')'	 {$4=$2;}| terme {$4=$5;}
+;
+terme:		'0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' 
+;
+
+// ******* Epile-log C++ ********
+
+%%
+
+//Appelé par l'analyseuyr en cas d'erreur 
+void yyerror ( char const *s) {
+	std::cout << "erreur lors de l'analyse : " << s << std::endl;
+}
+
+// fait une analyse syntaxique caractere par caractere
+int yylex ( void ) {
+	char c;
+	std::cin >> c;
+	while (c == ' ' || c == '\t') {
+		std::cin >> c;
+	}
+	return c;
+}
+
+int main(void) {
+	std::cin.unsetf(std::ios_base::skipws);
+	return yyparse ();
+}
+
+
+		
+		
