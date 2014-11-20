@@ -7,7 +7,7 @@ class Noeud<E extends Comparable<E>> {
 	protected int bal;
 
 	// CONSTRUCTEUR
-	// public Noeud<E>();
+	public Noeud(){}
 	public Noeud(E base) {
 		etq = base;
 		nbFils = 0;
@@ -19,8 +19,8 @@ class Noeud<E extends Comparable<E>> {
 	public void affecter(Noeud<E> B) {
 		etq = B.etq;
 		nbFils = B.nbFils;
-		leSon = B.leSon;
-		riSon = B.riSon;
+		leSon = (B.leSon);
+		riSon = (B.riSon);
 		bal = B.bal;
 	}
 
@@ -53,12 +53,13 @@ class Noeud<E extends Comparable<E>> {
 	}
 
 	public int addSon(E x) { // on ajoute sur un arbre non vide => constructeur
-		nbFils++;
-		int h;
+		
+		int h=0;
 		if (x != etq) {
+			nbFils++;
 			if (x.compareTo(etq) > 0) {
 				if (riSon != null) {
-					return riSon.addSon(x);
+					h = riSon.addSon(x);
 				} else {
 					riSon = new Noeud(x);
 					return 1;
@@ -70,19 +71,20 @@ class Noeud<E extends Comparable<E>> {
 				} else {
 					h = leSon.addSon(x);
 					h = -h;
-					if (h == 0) {
-						return 0;
-					} else {
-						bal = bal + h;
-						equilibrer();
-						if (bal == 0) {
-							return 0;
-						} else {
-							return 1;
-						}
-					}
 				}
-
+			}
+			//System.out.println("h " + h);
+			if (h == 0) {
+					return 0;
+			} else {
+				bal = bal + h;
+				balance();
+				equilibrer();
+				if (bal == 0) {
+					return 0;
+				} else {
+					return 1;
+				}
 			}
 		} else {
 			return 0;
@@ -103,19 +105,31 @@ class Noeud<E extends Comparable<E>> {
 	}
 
 	public int balance() {
-		return riSon.height() - leSon.height();
+		if(haveLson()){
+			if(haveRson()){
+				return riSon.height() - leSon.height();
+			}else{
+				return -1+leSon.height();
+			}
+		}else{
+			if(haveRson()){
+				return 1+riSon.height();
+			}else{
+				return 0;
+			}
+		}
 	}
 
 	public int getBalance() {
 		return bal;
 	}
 
-	public void ROTD() {
+	/*public void ROTD() {
 		Noeud<E> k = leSon;
 		int a = bal;
 		int b = k.getBalance();
 		leSon = k.getRiSon();
-		k.riSon = this; /* Rotation */
+		k.riSon = this; //rotation
 		setBal(a - Math.max(b, 0) - 1);
 		k.setBal(Math.min(a - 2, Math.min(a + b - 2, b - 1)));
 	}
@@ -125,13 +139,53 @@ class Noeud<E extends Comparable<E>> {
 		int a = balance();
 		int b = k.balance();
 		riSon = k.getLeSon();
-		k.leSon = this; /* Rotation */
+		k.leSon = this; // Rotation 
 		setBal(a - Math.max(b, 0) - 1);
 		k.setBal(Math.min(a - 2, Math.min(a + b, b - 1))); // La noeud droit de
 															// l'objet est
 															// devenu racine.
 	}
+*/
+	
+	public void ROTD() {
+		Noeud<E> k = new Noeud<E>();
+		k.affecter(leSon);
+		int a = balance();
+		int b = k.getBalance();
+		if(k.haveRson()){
+			leSon = k.getRiSon();
+		}else{
+			leSon =null;
+			k.riSon = new Noeud();
+		}
+		k.riSon.affecter( this); //rotation
+		/*setBal(a - Math.max(b, 0) - 1);
+		k.setBal(Math.min(a - 2, Math.min(a + b - 2, b - 1)));*/
+		bal = balance();
+		this.affecter(k);
+		bal = balance();
+	}
 
+	public void ROTG() {
+		Noeud<E> k = new Noeud<E>();
+		k.affecter(riSon); // b <- fils droit
+		int a = balance();
+		int b = k.balance();
+		if(k.haveLson()){
+			riSon.affecter( k.getLeSon() );
+			
+		}else{
+			riSon =null;
+			k.leSon = new Noeud();
+		}
+		k.leSon.affecter(this); // Rotation 
+		/*setBal(a - Math.max(b, 0) - 1);
+		k.setBal(Math.min(a - 2, Math.min(a + b, b - 1)));*/
+		bal = balance();
+											
+		this.affecter(k);
+		bal = balance();
+	}
 	public void DROTG() {
 		riSon.ROTD();
 		ROTG();
@@ -181,6 +235,8 @@ class Noeud<E extends Comparable<E>> {
 			}
 			if (h != 0) {
 				bal = bal + h;
+				//bal = balance();
+				//System.out.println("je vais equilibre");
 				equilibrer();
 				if (bal == 0) {
 					// variationH = -1
@@ -212,7 +268,8 @@ class Noeud<E extends Comparable<E>> {
 		if (h == 0) {
 			return 0;
 		} else {
-			bal = bal + h;
+			bal = balance();
+			//bal = bal + h;
 			equilibrer();
 			if (bal == 0) {
 				return -1;
@@ -254,8 +311,20 @@ class Noeud<E extends Comparable<E>> {
 		rac.affichage();
 		rac.addSon(8);
 		rac.affichage();
+		System.out.println("arbre-------------------------");
 		rac.addSon(10);
 		rac.affichage();
+		/*System.out.println("---------------------------");
+		rac.ROTG();
+		rac.affichage();*/
+		
+		/*
+		 * 
+					 *      5
+					 *    4	  6
+					 *           8
+					 *             10 
+		 */
 
 	}
 
